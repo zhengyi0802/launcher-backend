@@ -301,6 +301,12 @@ return [
             'icon'        => 'far fa-fw fa-tag',
             'label_color' => 'success',
         ],
+        [
+            'text'        => '跑馬燈資料表',
+            'url'         => 'marquees',
+            'icon'        => 'far fa-fw fa-tag',
+            'label_color' => 'success',
+        ],
         ['header' => '賬號設定'],
         [
             'text' => '個人資料',

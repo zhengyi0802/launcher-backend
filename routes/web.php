@@ -11,6 +11,7 @@ use App\Http\Controllers\AnnounceController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\MoreController;
+use App\Http\Controllers\MarqueeController;
 use App\Http\Controllers\FileUpload;
 use Intervention\Image\Facades\Image;
 
@@ -105,6 +106,10 @@ Route::resource('helps', HelpController::class);
 Route::post('/mores/{id}', 'App\Http\Controllers\MoreController@newstore')->name('mores.newstore');
 
 Route::resource('mores', MoreController::class);
+
+Route::post('/marquees/{id}', 'App\Http\Controllers\MarqueeController@newstore')->name('marquees.newstore');
+
+Route::resource('marquees', MarqueeController::class);
 
 Route::get('/admin/profile', [
     'as' => 'profile', 'uses' => 'App\Http\Controllers\AdminController@showProfile'

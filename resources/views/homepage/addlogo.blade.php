@@ -34,11 +34,6 @@
     @csrf
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group" name="proj_id" class="form-control">
-                <strong>專案名稱: {{ $project->name }}</strong>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Logo名稱:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Name">

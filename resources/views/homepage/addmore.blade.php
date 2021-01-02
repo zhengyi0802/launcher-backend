@@ -34,7 +34,7 @@
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>更多名稱:</strong>
+                <strong>更多功能名稱:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Name">
             </div>
         </div>
