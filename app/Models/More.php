@@ -9,6 +9,8 @@ class More extends Model
 {
     use HasFactory;
 
+    protected $table = 'mores';
+
     protected $fillable = [
        'proj_id',
        'name',

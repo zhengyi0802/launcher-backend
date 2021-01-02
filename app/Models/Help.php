@@ -9,6 +9,8 @@ class Help extends Model
 {
     use HasFactory;
 
+    protected $table = 'helps';
+
     protected $fillable = [
        'proj_id',
        'name',

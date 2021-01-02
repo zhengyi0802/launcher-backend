@@ -18,8 +18,8 @@ class InfoController extends Controller
      */
     public function index()
     {
-        $infos = DB::table('information')->leftJoin('projects', 'proj_id', '=', 'projects.id')
-                 ->select('information.*', 'projects.name as proj_name')->paginate(5);
+        $infos = DB::table('informations')->leftJoin('projects', 'proj_id', '=', 'projects.id')
+                 ->select('informations.*', 'projects.name as proj_name')->paginate(5);
 
         return view('infos.index',compact('infos'))
             ->with('i', (request()->input('page', 1) - 1) * 5);

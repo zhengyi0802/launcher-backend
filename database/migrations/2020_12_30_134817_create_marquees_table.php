@@ -17,16 +17,8 @@ class CreateMarqueesTable extends Migration
             $table->id();
             $table->integer('proj_id');
             $table->string('name');
-            $table->string('marquee1')->nullable();
-            $table->string('marquee2')->nullable();
-            $table->string('marquee3')->nullable();
-            $table->string('marquee4')->nullable();
-            $table->string('marquee5')->nullable();
-            $table->string('marquee6')->nullable();
-            $table->string('marquee7')->nullable();
-            $table->string('marquee8')->nullable();
-            $table->string('marquee9')->nullable();
-            $table->string('marquee10')->nullable();
+            $table->integer('index');
+            $table->string('marquee')->nullable();
             $table->boolean('status')->default(true);
             $table->datetime('start_datetime')->nullable();
             $table->datetime('stop_datetime')->nullable();

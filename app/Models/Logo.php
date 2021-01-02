@@ -9,6 +9,8 @@ class Logo extends Model
 {
     use HasFactory;
 
+    protected $table = 'logos';
+
     protected $fillable = [
        'proj_id',
        'name',

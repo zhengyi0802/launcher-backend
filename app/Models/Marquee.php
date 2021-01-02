@@ -9,6 +9,8 @@ class Marquee extends Model
 {
     use HasFactory;
 
+    protected $table = 'marquees';
+
     protected $fillable = [
        'proj_id',
        'name',
