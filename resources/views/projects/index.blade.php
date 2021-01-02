@@ -46,7 +46,7 @@
             <td>{{ $project->stop_datetime }}</td>
             <td>
                 <form action="{{ route('projects.destroy',$project->id) }}" method="POST">
-                    <a class="btn btn-homepage" href="{{ route('projects.homepage', $project->id) }}">首頁</a>
+                    <a class="btn btn-success" href="{{ route('projects.homepage', $project->id) }}">首頁</a>
                     <a class="btn btn-info" href="{{ route('projects.show',$project->id) }}">詳情</a>
                     <a class="btn btn-primary" href="{{ route('projects.edit',$project->id) }}">編輯</a>
                     @csrf
