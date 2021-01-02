@@ -20,12 +20,12 @@
 
     <table class="table table-bordered" width="90%">
       <tr>
-          <td style=" border:1px solid #8E8E8E;" colspan="2">
+          <td style=" border:1px solid #8E8E8E;" colspan="2" ALIGN=CENTER>
            <a href="{{ route('homepage.addlogo', $project->id) }}">
               <img src="../../img/UI_1.png">
            </a>
          </td>
-         <td style=" border:1px solid #8E8E8E;"  colspan="5">
+         <td style=" border:1px solid #8E8E8E;"  colspan="5" ALIGN=CENTER>
            <a href="{{ route('homepage.addbanner', $project->id) }}">
               <img src="../../img/UI_2.png">
            </a>

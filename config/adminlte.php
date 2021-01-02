@@ -272,6 +272,12 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => '影片資料表',
+            'url'         => 'videos',
+            'icon'        => 'far fa-fw fa-camera',
+            'label_color' => 'success',
+        ],
+        [
             'text'        => '廣告資料表',
             'url'         => 'advertistings',
             'icon'        => 'far fa-fw fa-image',

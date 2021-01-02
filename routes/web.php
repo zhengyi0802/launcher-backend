@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AdvertistingController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\AnnounceController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\HelpController;
@@ -90,6 +91,10 @@ Route::post('/advertistings/{id}/{position}', 'App\Http\Controllers\Advertisting
        ->name('advertistings.newstore');
 
 Route::resource('advertistings', AdvertistingController::class);
+
+Route::post('/videos/{id}', 'App\Http\Controllers\VideoController@newstore')->name('videos.newstore');
+
+Route::resource('videos', VideoController::class);
 
 Route::post('/announces/{id}', 'App\Http\Controllers\AnnounceController@newstore')->name('announces.newstore');
 

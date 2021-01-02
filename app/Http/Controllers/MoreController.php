@@ -115,7 +115,7 @@ class MoreController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Banner  $banner
+     * @param  \App\Models\More  $more
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, More $more)
