@@ -14,9 +14,9 @@ class Product extends Model
     protected $fillable = [
        'type_id',
        'serialno',
-       'proj_id',
        'mac_address',
-       'status',
+       'proj_id',
+       'status_id',
     ];
 
 }
