@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductCatagoryController;
 use App\Http\Controllers\ProductTypeController;
-use App\Http\Controllers\MachineController;
+use App\Http\Controllers\ProductStatusController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\AdminController;
@@ -52,7 +53,9 @@ Route::resource('product_catagories', ProductCatagoryController::class);
 
 Route::resource('product_types', ProductTypeController::class);
 
-Route::resource('machines', MachineController::class);
+Route::resource('product_statuses', ProductStatusController::class);
+
+Route::resource('products', ProductController::class);
 
 Route::get('/projects/{project}/homepage', [App\Http\Controllers\ProjectController::class, 'homepage'])
        ->name('projects.homepage');

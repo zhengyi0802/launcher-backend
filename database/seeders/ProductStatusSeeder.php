@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
-class ProductCatagorySeeder extends Seeder
+class ProductStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.

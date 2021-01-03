@@ -242,9 +242,21 @@ return [
                       'icon'        => 'far fa-fw fa-upload',
                       'label_color' => 'success',
                 ],
-               [
+                [
                       'text'        => '產品型號',
                       'url'         => 'product_types',
+                      'icon'        => 'far fa-fw fa-upload',
+                      'label_color' => 'success',
+                ],
+                [
+                      'text'        => '產品狀態',
+                      'url'         => 'product_statuses',
+                      'icon'        => 'far fa-fw fa-upload',
+                      'label_color' => 'success',
+                ],
+                [
+                      'text'        => '產品管理',
+                      'url'         => 'products',
                       'icon'        => 'far fa-fw fa-upload',
                       'label_color' => 'success',
                 ],
