@@ -234,84 +234,85 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-
-        [
-            'text'        => '圖片上傳測試',
-            'url'         => 'upload-file',
-            'icon'        => 'far fa-fw fa-upload',
-            'label_color' => 'success',
+        [   'text' => '產品管理',
+            'submenu' => [
+                [
+                      'text'        => '產品類別',
+                      'url'         => 'product_catagories',
+                      'icon'        => 'far fa-fw fa-upload',
+                      'label_color' => 'success',
+                ],
+               [
+                      'text'        => '產品型號',
+                      'url'         => 'product_types',
+                      'icon'        => 'far fa-fw fa-upload',
+                      'label_color' => 'success',
+                ],
+            ],
         ],
-
-
         [
             'text'        => '專案',
             'url'         => 'projects',
             'icon'        => 'far fa-fw fa-tv',
             'label_color' => 'success',
         ],
-        ['header' => '首頁設計'],
-/*
-        [
-            'text'        => '首頁顯示',
-            'url'         => 'homepage',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-*/
-        [
-            'text'        => 'Logo資料表',
-            'url'         => 'logos',
-            'icon'        => 'far fa-fw fa-trademark',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '橫幅廣告資料表',
-            'url'         => 'banners',
-            'icon'        => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '影片資料表',
-            'url'         => 'videos',
-            'icon'        => 'far fa-fw fa-camera',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '廣告資料表',
-            'url'         => 'advertistings',
-            'icon'        => 'far fa-fw fa-image',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '公告資料表',
-            'url'         => 'announces',
-            'icon'        => 'far fa-fw fa-edit',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '快訊資料表',
-            'url'         => 'infos',
-            'icon'        => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '操作教學資料表',
-            'url'         => 'helps',
-            'icon'        => 'far fa-fw fa-question',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '更多訊息資料表',
-            'url'         => 'mores',
-            'icon'        => 'far fa-fw fa-tag',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => '跑馬燈資料表',
-            'url'         => 'marquees',
-            'icon'        => 'far fa-fw fa-tag',
-            'label_color' => 'success',
+        [    'text' => '首頁設計',
+             'submenu' => [
+                 [
+                      'text'        => 'Logo資料表',
+                      'url'         => 'logos',
+                      'icon'        => 'far fa-fw fa-trademark',
+                      'label_color' => 'success',
+                 ],
+                 [
+                      'text'        => '橫幅廣告資料表',
+                      'url'         => 'banners',
+                      'icon'        => 'far fa-fw fa-file',
+                      'label_color' => 'success',
+                 ],
+                 [
+                      'text'        => '影片資料表',
+                      'url'         => 'videos',
+                      'icon'        => 'far fa-fw fa-camera',
+                      'label_color' => 'success',
+                 ],
+                 [
+                      'text'        => '廣告資料表',
+                      'url'         => 'advertistings',
+                      'icon'        => 'far fa-fw fa-image',
+                      'label_color' => 'success',
+                 ],
+                 [
+                      'text'        => '公告資料表',
+                      'url'         => 'announces',
+                      'icon'        => 'far fa-fw fa-edit',
+                      'label_color' => 'success',
+                 ],
+                 [
+                      'text'        => '快訊資料表',
+                      'url'         => 'infos',
+                      'icon'        => 'far fa-fw fa-file',
+                      'label_color' => 'success',
+                 ],
+                 [
+                      'text'        => '操作教學資料表',
+                      'url'         => 'helps',
+                      'icon'        => 'far fa-fw fa-question',
+                      'label_color' => 'success',
+                 ],
+                 [
+                      'text'        => '更多訊息資料表',
+                      'url'         => 'mores',
+                      'icon'        => 'far fa-fw fa-tag',
+                      'label_color' => 'success',
+                 ],
+                 [
+                      'text'        => '跑馬燈資料表',
+                      'url'         => 'marquees',
+                      'icon'        => 'far fa-fw fa-tag',
+                      'label_color' => 'success',
+                 ],
+            ],
         ],
         ['header' => '賬號設定'],
         [
