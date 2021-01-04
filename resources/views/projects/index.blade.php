@@ -29,26 +29,21 @@
             <th>編號</th>
             <th>專案名稱</th>
             <th>描述</th>
-            <th>Mac位址</th>
             <th>狀態</th>
-            <th>啟用時間</th>
-            <th>終止時間</th>
-            <th width="280px">動作</th>
+            <th width="480px">動作</th>
         </tr>
         @foreach ($projects as $project)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $project->name }}</td>
             <td>{{ $project->detail }}</td>
-            <td>{{ $project->mac_address }}</td>
             <td>{{ ($project->status==1) ? "啟用":"不啟用" }}</td>
-            <td>{{ $project->start_datetime }}</td>
-            <td>{{ $project->stop_datetime }}</td>
             <td>
                 <form action="{{ route('projects.destroy',$project->id) }}" method="POST">
-                    <a class="btn btn-success" href="{{ route('projects.homepage', $project->id) }}">首頁</a>
-                    <a class="btn btn-info" href="{{ route('projects.show',$project->id) }}">詳情</a>
-                    <a class="btn btn-primary" href="{{ route('projects.edit',$project->id) }}">編輯</a>
+                    <a class="btn btn-secondary" href="{{ route('projects.startpage', $project->id) }}">起始畫面</a>
+                    <a class="btn btn-success"   href="{{ route('projects.homepage', $project->id) }}">首頁</a>
+                    <a class="btn btn-info"      href="{{ route('projects.show',$project->id) }}">詳情</a>
+                    <a class="btn btn-primary"   href="{{ route('projects.edit',$project->id) }}">編輯</a>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">刪除</button>

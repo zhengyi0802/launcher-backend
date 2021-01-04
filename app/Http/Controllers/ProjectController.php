@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Startpage;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -68,6 +69,14 @@ class ProjectController extends Controller
     {
         return view('homepage.edit', compact('project'));
     }
+
+    public function startpage(Project $project)
+    {
+        $startpage = new Startpage;
+
+        return view('startpages.edit', compact('startpage'), compact('project'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

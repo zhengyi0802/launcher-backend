@@ -60,6 +60,12 @@ Route::resource('products', ProductController::class);
 Route::get('/projects/{project}/homepage', [App\Http\Controllers\ProjectController::class, 'homepage'])
        ->name('projects.homepage');
 
+Route::get('/projects/{project}/startpage', [App\Http\Controllers\ProjectController::class, 'startpage'])
+       ->name('projects.startpage');
+
+Route::post('/startpages/{$id}', [App\Http\Controllers\StartpageController::class, 'update'])
+       ->name('startpages.update');
+
 Route::resource('projects', ProjectController::class);
 
 Route::get('/homepage/{project}/addlogo', [App\Http\Controllers\HomepageController::class, 'addlogo'])
