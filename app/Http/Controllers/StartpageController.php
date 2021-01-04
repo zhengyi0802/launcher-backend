@@ -67,41 +67,39 @@ class StartpageController extends Controller
      * @param  \App\Models\Startpage  $startpage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Startpage $startpage, $id)
+    public function newstore(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
-            'mime_type' => 'required',
+            'image' => 'required',
             'status' => 'required',
         ]);
 
-        $startpage->proj_id = $id;
-        $startpage->name = $request->name;
-        $startpage->mime_type = $request->mime_type;
-        $startpage->detail = $request->detail;
-        $startpage->url = $file->file_path;
-        $startpage->status = $request->status;
-        $startpage->start_datetime= $request->start_datetime;
-        $startpage->stop_datetime = $request->stop_datetime;
+        $file = ImageUpload::fileUpload($request);
 
-        if ($request->mime_type == 'image') {
-            $file = ImageUpload::fileUpload($request);
-
-            if ($file == null) {
-                return back()->with('image', $fileName);
-            } else {
-                $startpage->url = $file->file_path;
-
-            }
+        if ($file == null) {
+            return back()->with('image', $fileName);
         } else {
-            $startpage->url = $request->url;
+            $startpage = new Startpage;
+            $startpage->proj_id = ($id == 0) ? $request->proj_id : $id;
+            $startpage->name = $request->name;
+            $startpage->mime_type = $request->mime_type;
+            $startpage->detail = $request->detail;
+            $startpage->url = $file->file_path;
+            $startpage->status = $request->status;
+            $startpage->start_datetime= $request->start_datetime;
+            $startpage->stop_datetime = $request->stop_datetime;
+            $startpage->save();
         }
 
-        $startpage->save();
+        if ( $id == null ) {
+            return redirect()->route('banners.index')
+                        ->with('success','Banners created successfully.');
+        } else {
+            $project = DB::table('projects')->where("id", $id)->first();
 
-        $project = DB::table('projects')->where("id", $id)->first();
-
-        return redirect()->route('projects.startpage', $id)->with('success', 'Startpage created successfully.');
+            return redirect()->route('projects.homepage', $id)->with('success', 'Banners created successfully.');
+        }
 
     }
 

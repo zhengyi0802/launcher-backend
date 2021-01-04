@@ -30,7 +30,7 @@
        </div>
     </div>
 
-    <form action="{{ route('startpages.update', $project->id) }}" method="POST" enctype="multipart/form-data" >
+    <form action="{{ route('startpages.newstore', $project->id) }}" method="POST" enctype="multipart/form-data" >
         @csrf
         @method('PUT')
          <div class="row">
