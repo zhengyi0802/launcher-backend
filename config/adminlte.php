@@ -258,11 +258,15 @@ return [
                 ],
             ],
         ],
-        [
-            'text'        => '專案',
-            'url'         => 'projects',
-            'icon'        => 'far fa-fw fa-tv',
-            'label_color' => 'success',
+        [   'text' => '專案管理',
+            'submenu' => [
+                 [
+                      'text'        => '專案管理',
+                      'url'         => 'projects',
+                      'icon'        => 'far fa-fw fa-tv',
+                      'label_color' => 'success',
+                 ],
+            ],
         ],
         [    'text' => '首頁元件資料表',
              'submenu' => [
