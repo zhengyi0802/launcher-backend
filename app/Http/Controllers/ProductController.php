@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProductType;
 use App\Models\ProductStatus;
 use App\Models\Product;
+use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,10 @@ class ProductController extends Controller
     {
         $products = DB::table('products')
                         ->leftJoin('product_types', 'type_id', 'product_types.id')
-                        ->leftJoin('product_statuses', 'status', 'product_statuses.id')
-                        ->select('products.*', 'product_types.name as type_name', 
+                        ->leftJoin('projects', 'proj_id', 'projects.id')
+                        ->leftJoin('product_statuses', 'status_id', 'product_statuses.id')
+                        ->select('products.*', 'product_types.name as type_name',
+                          'projects.name as project_name',
                           'product_statuses.name as status_name')->paginate(5);
 
         return view('products.index',compact('products'))
@@ -36,8 +39,11 @@ class ProductController extends Controller
     {
         $productTypes = DB::table('product_types')->get();
         $productStatuses = DB::table('product_statuses')->get();
+        $projects = DB::table('projects')->get();
 
-        return view('products.create', compact('productTypes'), compact('productStatuses'));
+        return view('products.create', compact('productTypes'))
+               ->with(compact('productStatuses'))
+               ->with(compact('projects'));
     }
 
     /**
@@ -71,8 +77,11 @@ class ProductController extends Controller
     {
         $productType = ProductType::where('id', $product->type_id)->first();
         $productStatus = ProductStatus::where('id', $product->status_id)->first();
+        $project = Project::where('id', $product->proj_id)->first();
+        $proj_name = ($project != null) ? $project->name : '--------';
 
         return view('products.show',compact('product'))
+               ->with('proj_name', $proj_name)
                ->with('type_name', $productType->name)
                ->with('status_name', $productStatus->name);
 
@@ -88,8 +97,11 @@ class ProductController extends Controller
     {
         $productTypes = DB::table('product_types')->get();
         $productStatuses = DB::table('product_statuses')->get();
+        $projects = DB:: table('projects')->get();
+
         return view('products.edit', compact('product'))
                ->with(compact('productTypes'))
+               ->with(compact('projects'))
                ->with(compact('productStatuses'));
     }
 
@@ -109,7 +121,7 @@ class ProductController extends Controller
             'status_id' => 'required',
         ]);
 
-        $product->save();
+        $product->update($request->all());
 
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');

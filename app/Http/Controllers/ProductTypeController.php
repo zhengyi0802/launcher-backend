@@ -94,9 +94,11 @@ class ProductTypeController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'catagory_id' => 'required',
+            'status' => 'required',
         ]);
 
-        $productType->save();
+        $productType->update($request->all());
 
         return redirect()->route('product_types.index')
                         ->with('success','Product Types created successfully.');

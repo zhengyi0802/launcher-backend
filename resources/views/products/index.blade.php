@@ -27,8 +27,9 @@
     <table class="table table-bordered">
         <tr>
             <th>編號</th>
-            <th>產品序號</th>
             <th>產品型號</th>
+            <th>產品序號</th>
+            <th>專案名稱</th>
             <th>MAC位址</th>
             <th>狀態</th>
             <th width="280px">動作</th>
@@ -36,8 +37,9 @@
         @foreach ($products as $product)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $product->serialno }}</td>
             <td>{{ $product->type_name }}</td>
+            <td>{{ $product->serialno }}</td>
+            <td>{{ $product->project_name }}</td>
             <td>{{ $product->mac_address }}</td>
             <td>{{ $product->status_name }}</td>
             <td>

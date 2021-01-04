@@ -21,14 +21,20 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>產品型號:</strong>
+                {{ $type_name }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>產品序號:</strong>
                 {{ $product->serialno }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>產品型號:</strong>
-                {{ $type_name }}
+                <strong>專案名稱:</strong>
+                {{ $proj_name ?? '--------' }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

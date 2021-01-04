@@ -42,7 +42,7 @@
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>產品類別:</strong>
-                    <select name="catagory_id">
+                    <select name="catagory_id" id="catagory_id">
                         @foreach($productCatagories as $productCatagory)
                            <option value="{{ $productCatagory->id }}" {{ ($productCatagory->id == $productType->catagory_id) ? "selected" : null }}>{{ $productCatagory->name }}</option>
                         @endforeach

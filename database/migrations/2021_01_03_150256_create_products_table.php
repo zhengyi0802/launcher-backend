@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->integer('type_id');
             $table->string('serialno');
             $table->string('mac_address');
-            $tavle->integer('proj_id')->nullable();
+            $tavle->integer('proj_id')->default(0);
             $table->integer('status_id');
             $table->timestamps();
         });

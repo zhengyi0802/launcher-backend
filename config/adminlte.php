@@ -264,7 +264,7 @@ return [
             'icon'        => 'far fa-fw fa-tv',
             'label_color' => 'success',
         ],
-        [    'text' => '首頁設計',
+        [    'text' => '首頁元件資料表',
              'submenu' => [
                  [
                       'text'        => 'Logo資料表',

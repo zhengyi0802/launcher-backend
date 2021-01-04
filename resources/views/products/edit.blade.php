@@ -33,6 +33,16 @@
         @csrf
         @method('PUT')
          <div class="row">
+           <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>產品型號:</strong>
+                    <select name="type_id">
+                        @foreach($productTypes as $productType)
+                           <option value="{{ $productType->id }}" {{ ($productType->id == $product->type_id) ? "selected" : null }} >{{ $productType->name ?? '' }}</option
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>產品序號:</strong>
@@ -41,10 +51,11 @@
             </div>
            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>產品型號:</strong>
-                    <select name="type_id">
-                        @foreach($productTypes as $productType)
-                           <option value="{{ $productType->id }}" {{ ($productType->id == $product->type_id) ? "selected" : null }}>{{ $productType->name }}</option>
+                    <strong>專案名稱:</strong>
+                    <select name="proj_id">
+                           <option value="0" {{ ($product->proj_id == 0) ? "selected" : null }} >--------</option>
+                        @foreach($projects as $project)
+                           <option value="{{ $project->id }}" {{ ($project->id == $product->proj_id) ? "selected" : null }}>{{ $project->name }}</option>
                         @endforeach
                     </select>
                 </div>
