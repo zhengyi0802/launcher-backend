@@ -67,9 +67,42 @@ class StartpageController extends Controller
      * @param  \App\Models\Startpage  $startpage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Startpage $startpage)
+    public function update(Request $request, Startpage $startpage, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'mime_type' => 'required',
+            'status' => 'required',
+        ]);
+
+        $startpage->proj_id = $id;
+        $startpage->name = $request->name;
+        $startpage->mime_type = $request->mime_type;
+        $startpage->detail = $request->detail;
+        $startpage->url = $file->file_path;
+        $startpage->status = $request->status;
+        $startpage->start_datetime= $request->start_datetime;
+        $startpage->stop_datetime = $request->stop_datetime;
+
+        if ($request->mime_type == 'image') {
+            $file = ImageUpload::fileUpload($request);
+
+            if ($file == null) {
+                return back()->with('image', $fileName);
+            } else {
+                $startpage->url = $file->file_path;
+
+            }
+        } else {
+            $startpage->url = $request->url;
+        }
+
+        $startpage->save();
+
+        $project = DB::table('projects')->where("id", $id)->first();
+
+        return redirect()->route('projects.startpage', $id)->with('success', 'Startpage created successfully.');
+
     }
 
     /**

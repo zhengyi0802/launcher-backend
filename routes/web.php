@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\StartpageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\BannerController;
@@ -60,11 +61,13 @@ Route::resource('products', ProductController::class);
 Route::get('/projects/{project}/homepage', [App\Http\Controllers\ProjectController::class, 'homepage'])
        ->name('projects.homepage');
 
-Route::get('/projects/{project}/startpage', [App\Http\Controllers\ProjectController::class, 'startpage'])
+Route::get('/projects/{project}/startpages', [App\Http\Controllers\ProjectController::class, 'startpage'])
        ->name('projects.startpage');
 
 Route::post('/startpages/{$id}', [App\Http\Controllers\StartpageController::class, 'update'])
        ->name('startpages.update');
+
+Route::resource('startpages', StartPageController::class);
 
 Route::resource('projects', ProjectController::class);
 
