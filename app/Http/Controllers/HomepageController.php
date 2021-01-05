@@ -132,4 +132,56 @@ class HomepageController extends Controller
         return view('homepage.addmarquee', compact('project'))->with('popup', 'open');
     }
 
+    public function query(Request $request)
+    {
+        if ($request->mac) {
+            $mac_address = $request->mac;
+            $proj_id = Product::where('mac_address', 'LIKE', $mac_address);
+        } else if ($request->id) {
+            $proj_id = $id;
+        }
+
+        $homepage = $this->getUrls($proj_id);
+        return json_encode($homepage);
+    }
+
+    private function getUrls($id)
+    {
+         $logo = Logo::where('proj_id', '=', $id)->first()->toArray();
+         $banner = Banner::where('proj_id', '=', $id)->first()->toArray();
+         $advertistings = Advertisting::where('proj_id', '=', $id);
+         $video = Video::where('proj_id', '=', $id)->first()->toArray();
+         $announce = Announce::where('proj_id', '=', $id)->first()->toArray();
+         $info = Information::where('proj_id', '=', $id)->first()->toArray();
+         $help = Help::where('proj_id', '=', $id)->first()->toArray();
+         $more = More::where('proj_id', '=', $id)->first()->toArray();
+         $advertisting1 = null;
+         $advertisting2 = null;
+
+         if ($advertistings) {
+             foreach($advertistings as $advertisting) {
+                if ($advertisting->position == 1) {
+                    $qdvertisting1 = $advertisting->toArray();
+                } else {
+                    $advertisting2 = $advertisting->toArray();
+                }
+            }
+         }
+
+
+         $urls = [
+               'logo' => (($logo) ? $logo : null),
+               'banner' => (($banner) ? $banner : null),
+               'advertisting1' => $advertisting1,
+               'advertisting2' => $advertisting2,
+               'video' => (($video) ? $video : null),
+               'announce' => (($announce) ? $announce : null),
+               'info' => (($info) ? $info : null),
+               'help' => (($help) ? $help : null),
+               'more' => (($more) ? $more : null),
+         ];
+
+         return $urls;
+    }
+
 }

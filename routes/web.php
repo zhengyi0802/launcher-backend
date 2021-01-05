@@ -71,6 +71,9 @@ Route::resource('startpages', StartpageController::class);
 
 Route::resource('projects', ProjectController::class);
 
+Route::get('/homepage/query', [App\Http\Controllers\HomepageController::class, 'query'])
+       ->name('homepage.query');
+
 Route::get('/homepage/{project}/addlogo', [App\Http\Controllers\HomepageController::class, 'addlogo'])
        ->name('homepage.addlogo');
 
