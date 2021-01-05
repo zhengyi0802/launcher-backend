@@ -14,6 +14,7 @@ use App\Models\Information;
 use App\Models\Help;
 use App\Models\More;
 use App\Models\Marquee;
+use App\Models\Product;
 
 class HomepageController extends Controller
 {
@@ -134,11 +135,16 @@ class HomepageController extends Controller
 
     public function query(Request $request)
     {
-        if ($request->mac) {
-            $mac_address = $request->mac;
-            $proj_id = Product::where('mac_address', 'LIKE', $mac_address);
-        } else if ($request->id) {
-            $proj_id = $id;
+        //var_dump($request);
+        if ($request->input('mac')) {
+            $mac = $request->input('mac');
+            $product = Product::where('mac_address', '=', $mac)->firstOrFail();
+            //var_dump($product);
+            if ($product) {
+                $proj_id = $product->proj_id;
+            }
+        } else if ($request->input('id')) {
+            $proj_id = $request->input('id');
         }
 
         $homepage = $this->getUrls($proj_id);
