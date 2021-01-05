@@ -12,6 +12,7 @@ use App\Models\Announce;
 use App\Models\Information;
 use App\Models\Help;
 use App\Models\More;
+
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -74,7 +75,7 @@ class ProjectController extends Controller
     public function homepage(Project $project)
     {
         $homepage = $this->getUrls($project->id);
-
+        //var_dump($homepage);
         return view('homepage.edit', compact('project'))->with('homepage', $homepage);
     }
 
@@ -140,38 +141,38 @@ class ProjectController extends Controller
 
     private function getUrls($id)
     {
-         $logo = Logo::where('proj_id', '=', $id)->first();
-         $banner = Banner::where('proj_id', '=', $id)->first();
+         $logo = Logo::where('proj_id', '=', $id)->first()->toArray();
+         $banner = Banner::where('proj_id', '=', $id)->first()->toArray();
          $advertistings = Advertisting::where('proj_id', '=', $id);
-         $video = Video::where('proj_id', '=', $id)->first();
-         $announce = Announce::where('proj_id', '=', $id)->first();
-         $info = Information::where('proj_id', '=', $id)->first();
-         $help = Help::where('proj_id', '=', $id)->first();
-         $more = More::where('proj_id', '=', $id)->first();
+         $video = Video::where('proj_id', '=', $id)->first()->toArray();
+         $announce = Announce::where('proj_id', '=', $id)->first()->toArray();
+         $info = Information::where('proj_id', '=', $id)->first()->toArray();
+         $help = Help::where('proj_id', '=', $id)->first()->toArray();
+         $more = More::where('proj_id', '=', $id)->first()->toArray();
          $advertisting1 = null;
          $advertisting2 = null;
 
          if ($advertistings) {
              foreach($advertistings as $advertisting) {
                 if ($advertisting->position == 1) {
-                    $qdvertisting1 = $advertisting;
+                    $qdvertisting1 = $advertisting->toArray();
                 } else {
-                    $advertisting2 = $advertisting;
+                    $advertisting2 = $advertisting->toArray();
                 }
             }
          }
 
 
          $urls = [
-               'logo' => (($logo) ? $logo->url : null),
-               'banner' => (($banner) ? $banner->url : null),
+               'logo' => (($logo) ? $logo : null),
+               'banner' => (($banner) ? $banner : null),
                'advertisting1' => $advertisting1,
                'advertisting2' => $advertisting2,
-               'video' => (($video) ? $video->url : null),
-               'announce' => (($announce) ? $announce->url : null),
-               'info' => (($info) ? $info->url : null),
-               'help' => (($help) ? $help->url : null),
-               'more' => (($more) ? $more->url : null),
+               'video' => (($video) ? $video : null),
+               'announce' => (($announce) ? $announce : null),
+               'info' => (($info) ? $info : null),
+               'help' => (($help) ? $help : null),
+               'more' => (($more) ? $more : null),
          ];
 
          return $urls;

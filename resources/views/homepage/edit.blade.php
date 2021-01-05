@@ -22,12 +22,12 @@
       <tr>
           <td style=" border:1px solid #8E8E8E;" colspan="2" ALIGN=CENTER>
            <a href="{{ route('homepage.addlogo', $project->id) }}">
-              <img src="../../img/UI_1.png">
+              <img src="{{ $homepage['logo']['url'] ?? '../../img/UI_1.png' }}">
            </a>
          </td>
          <td style=" border:1px solid #8E8E8E;"  colspan="5" ALIGN=CENTER>
            <a href="{{ route('homepage.addbanner', $project->id) }}">
-              <img src="../../img/UI_2.png">
+              <img src="{{ $homepage['banner']['url'] ?? '../../img/UI_2.png' }}">
            </a>
          </td>
          <td style=" border:1px solid #8E8E8E;" colspan="2" ALIGN=CENTER>
@@ -37,7 +37,7 @@
       <tr>
          <td style=" border:1px solid #8E8E8E;" rowspan="2"colspan="2" ALIGN=CENTER>
            <a href="{{ route('homepage.addadvertisting', ['id' => $project->id, 'position' =>'1']) }}">
-             <img src="../../img/UI_4.png">
+             <img src="{{ $homepage['advertisting1']['url'] ?? '../../img/UI_4.png' }}">
            </a>
          </td>
          <td style=" border:1px solid #8E8E8E;" rowspan="4"colspan="5" ALIGN=CENTER>
@@ -47,33 +47,33 @@
          </td>
          <td style=" border:1px solid #8E8E8E;" colspan="2"  ALIGN=CENTER>
            <a href="{{ route('homepage.addannounce', $project->id) }}">
-             <img src="../../img/UI_7.png">
+             <img src="{{ $homepage['announce']['url'] ?? '../../img/UI_7.png' }}">
            </a>
          </td>
       </tr>
       <tr>
          <td style=" border:1px solid #8E8E8E;" colspan="2" ALIGN=CENTER>
            <a href="{{ route('homepage.addinformations', $project->id) }}">
-             <img src="../../img/UI_8.png">
+             <img src="{{ $homepage['info']['url'] ?? '../../img/UI_8.png' }}">
            </a>
          </td>
       </tr>
       <tr>
          <td style=" border:1px solid #8E8E8E;" colspan="2"   rowspan="2" ALIGN=CENTER>
            <a href="{{ route('homepage.addadvertisting', ['id' => $project->id, 'position' => '2']) }}">
-             <img src="../../img/UI_5.png">
+             <img src="{{ $homepage['advertisting2']['url'] ?? '../../img/UI_5.png' }} ">
            </a>
          </td>
          <td style=" border:1px solid #8E8E8E;" colspan="2" ALIGN=CENTER>
            <a href="{{ route('homepage.addhelp', $project->id) }}">
-             <img src="../../img/UI_9.png">
+             <img src="{{ $homepage['help']['url'] ?? '../../img/UI_9.png' }}">
            </a>
          </td>
       </tr>
       <tr>
          <td style=" border:1px solid #8E8E8E;" colspan="2" ALIGN=CENTER >
            <a href="{{ route('homepage.addmore', $project->id) }}">
-             <img src="../../img/UI_10.png">
+             <img src="{{ $homepage['more']['url'] ?? '../../img/UI_10.png' }}">
            </a>
          </td>
       </tr>

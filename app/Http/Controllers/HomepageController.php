@@ -5,6 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Logo;
+use App\Models\Banner;
+use App\Models\Advertisting;
+use App\Models\Video;
+use App\Models\Announce;
+use App\Models\Information;
+use App\Models\Help;
+use App\Models\More;
 use App\Models\Marquee;
 
 class HomepageController extends Controller
@@ -46,46 +54,77 @@ class HomepageController extends Controller
 
     public function addlogo(Project $project)
     {
-        return view('homepage.addlogo', compact('project'))->with('popup', 'open');
+        $logo = Logo::where('proj_id', '=', $project->id)->first();
+
+        return view('homepage.addlogo', compact('project'))
+               ->with(compact('logo'))
+               ->with('popup', 'open');
     }
 
     public function addbanner(Project $project)
     {
-        return view('homepage.addbanner', compact('project'))->with('popup', 'open');
+        $banner = Banner::where('proj_id', '=', $project->id)->first();
+
+        return view('homepage.addbanner', compact('project'))
+               ->with(compact('banner'))
+               ->with('popup', 'open');
     }
 
     public function addvideo(Project $project)
     {
-        return view('homepage.addvideo', compact('project'))->with('popup', 'open');
+        $video = Video::where('proj_id', '=', $project->id)->first();
+
+        return view('homepage.addvideo', compact('project'))
+               ->with(compact('video'))
+               ->with('popup', 'open');
     }
 
     public function addannounce(Project $project)
     {
-        return view('homepage.addannounce', compact('project'))->with('popup', 'open');
+        $announce = Announce::where('proj_id', '=', $project->id)->first();
+
+        return view('homepage.addannounce', compact('project'))
+               ->with(compact('announce'))
+               ->with('popup', 'open');
     }
 
     public function addadvertisting($id, $position)
     {
         $project = DB::table('projects')->where('id', $id)->first();
-
+        $advertisting1 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '1')->first();
+        $advertisting2 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '2')->first();
         return view('homepage.addadvertisting',
                     ['proj_id' => $project->id, 'proj_name' => $project->name, 'position' => $position])
+               ->with(compact('advertisting1'))
+               ->with(compact('advertisting2'))
                ->with('popup', 'open');
     }
 
     public function addinformations(Project $project)
     {
-        return view('homepage.addinformations', compact('project'))->with('popup', 'open');
+        $info = Information::where('proj_id', '=', $project->id)->first();
+
+        return view('homepage.addinformations', compact('project'))
+               ->with(compact('info'))
+               ->with('popup', 'open');
     }
 
     public function addhelp(Project $project)
     {
-        return view('homepage.addhelp', compact('project'))->with('popup', 'open');
+        $help = Help::where('proj_id', '=', $project->id)->first();
+
+        return view('homepage.addhelp', compact('project'))
+               ->with(compact('help'))
+               ->with('popup', 'open');
     }
 
     public function addmore(Project $project)
     {
-        return view('homepage.addmore', compact('project'))->with('popup', 'open');
+        $more = More::where('proj_id', '=', $project->id)->first();
+
+        return view('homepage.addmore', compact('project'))
+               ->with(compact('more'))
+               ->with('popup', 'open');
     }
 
     public function addmarquee(Project $project)
