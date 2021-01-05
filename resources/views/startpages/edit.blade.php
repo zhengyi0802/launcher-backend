@@ -31,13 +31,12 @@
     </div>
 
     <form action="{{ route('startpages.newstore', $project->id) }}" method="POST" enctype="multipart/form-data" >
-        @csrf
-        @method('PUT')
+         @csrf
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>起始頁面名稱:</strong>
-                    <input type="text" name="name" value="{{ $startpage->name }}" class="form-control" placeholder="Name">
+                    <input type="text" name="name" value="{{ $startpage->name }}" class="form-control" placeholder="起始頁面名稱">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -65,20 +64,32 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>圖片/影片:</strong>
-                    <div id="div-url" style="display:none"> <input type="url" id="url" name="url"></div>
-                    <div id="div-image"><input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" ></div>
-                    <div id="div-preview"><img src="{{ $startpage->url }}" name="preview" id="preview" ></div>
+                    <div id="div-url" style="display:none">
+                        <input type="url" id="url" name="url" class="form-control">
+                    </div>
+                    <div id="div-image">
+                        <input type="file" id="image" name="image" accept="image/*" onchange="loadImage(event)" >
+                    </div>
+                    <div id="div-preview">
+                        <img src="{{ $startpage->url }}" name="preview" id="preview" >
+                    </div>
+                </div>
+                <script>
+                    var loadImage = function(event) {
+                        var output = document.getElementById('preview');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                        output.onload = function() {
+                           URL.revokeObjectURL(output.src) // free memory
+                        }
+                    };
+                </script>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>描述:</strong>
+                    <textarea class="form-control" style="height:150px" name="detail" placeholder="描述">{{ $startpage->detail }}</textarea>
                 </div>
             </div>
-            <script>
-                var loadImage = function(event) {
-                    var output = document.getElementById('preview');
-                    output.src = URL.createObjectURL(event.target.files[0]);
-                    output.onload = function() {
-                       URL.revokeObjectURL(output.src) // free memory
-                    }
-                };
-            </script>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>狀態:  </strong>

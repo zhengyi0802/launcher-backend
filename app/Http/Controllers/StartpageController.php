@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\ImageUpload;
+use App\Models\File;
 use App\Models\Startpage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class StartpageController extends Controller
@@ -38,6 +41,53 @@ class StartpageController extends Controller
         //
     }
 
+    public function newstore(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'status' => 'required',
+        ]);
+
+        $insertflag = false;
+        $startpage = Startpage::where('proj_id', '=', $id)->first();
+        if ($startpage == null) {
+            $startpage = new Startpage;
+            $insertflag = true;
+        }
+
+        $startpage->proj_id = $id;
+        $startpage->name = $request->name;
+        $startpage->mime_type = $request->mime_type;
+        if ($request->url != null) $startpage->url = $request->url;
+        $startpage->detail = $request->detail;
+        $startpage->status = $request->status;
+        $startpage->start_datetime= $request->start_datetime;
+        $startpage->stop_datetime = $request->stop_datetime;
+
+        if ($request->mime_type == 'image') {
+            if ($insertflag || $request->file()) {
+                $file = ImageUpload::fileUpload($request);
+
+                if ($file == null) {
+                    return back()->with('image', $fileName);
+                }
+                $startpage->url = $file->file_path;
+            }
+        }
+
+        $startpage->save();
+
+        if ( $id == null ) {
+            return redirect()->route('projects.index')
+                        ->with('success','Startpage created successfully.');
+        } else {
+            $project = DB::table('projects')->where("id", $id)->first();
+
+            return redirect()->route('projects.index', $id)->with('success', 'Startpage created successfully.');
+        }
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -67,7 +117,7 @@ class StartpageController extends Controller
      * @param  \App\Models\Startpage  $startpage
      * @return \Illuminate\Http\Response
      */
-    public function newstore(Request $request, $id)
+    public function update(Request $request, Startpage $startpage)
     {
         $request->validate([
             'name' => 'required',
@@ -93,12 +143,12 @@ class StartpageController extends Controller
         }
 
         if ( $id == null ) {
-            return redirect()->route('banners.index')
-                        ->with('success','Banners created successfully.');
+            return redirect()->route('projects.index')
+                        ->with('success','Startpage created successfully.');
         } else {
             $project = DB::table('projects')->where("id", $id)->first();
 
-            return redirect()->route('projects.homepage', $id)->with('success', 'Banners created successfully.');
+            return redirect()->route('projects.index', $id)->with('success', 'Startpage created successfully.');
         }
 
     }

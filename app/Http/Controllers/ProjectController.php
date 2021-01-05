@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Startpage;
+use App\Models\Logo;
+use App\Models\Banner;
+use App\Models\Advertisting;
+use App\Models\Video;
+use App\Models\Announce;
+use App\Models\Information;
+use App\Models\Help;
+use App\Models\More;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -41,7 +49,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'name' => 'required',
             'status' => 'required',
@@ -61,20 +68,25 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
         return view('projects.show', compact('project'));
     }
 
     public function homepage(Project $project)
     {
-        return view('homepage.edit', compact('project'));
+        $homepage = $this->getUrls($project->id);
+
+        return view('homepage.edit', compact('project'))->with('homepage', $homepage);
     }
 
     public function startpage(Project $project)
     {
-        $startpage = new Startpage;
+        $startpage = Startpage::where('proj_id', '=', $project->id)->first();
+        if ($startpage == null) {
+           $startpage = new Startpage;
+        }
 
-        return view('startpages.edit', compact('startpage'), compact('project'));
+        return view('startpages.edit', compact('project'))->with(compact('startpage'));
+               //->header('X-Frame-Options', 'allow-from https://www.youtube.com/');
     }
 
     /**
@@ -123,5 +135,45 @@ class ProjectController extends Controller
 
         return redirect()->route('projects.index')
                         ->with('success','Project deleted successfully');
+    }
+
+
+    private function getUrls($id)
+    {
+         $logo = Logo::where('proj_id', '=', $id)->first();
+         $banner = Banner::where('proj_id', '=', $id)->first();
+         $advertistings = Advertisting::where('proj_id', '=', $id);
+         $video = Video::where('proj_id', '=', $id)->first();
+         $announce = Announce::where('proj_id', '=', $id)->first();
+         $info = Information::where('proj_id', '=', $id)->first();
+         $help = Help::where('proj_id', '=', $id)->first();
+         $more = More::where('proj_id', '=', $id)->first();
+         $advertisting1 = null;
+         $advertisting2 = null;
+
+         if ($advertistings) {
+             foreach($advertistings as $advertisting) {
+                if ($advertisting->position == 1) {
+                    $qdvertisting1 = $advertisting;
+                } else {
+                    $advertisting2 = $advertisting;
+                }
+            }
+         }
+
+
+         $urls = [
+               'logo' => (($logo) ? $logo->url : null),
+               'banner' => (($banner) ? $banner->url : null),
+               'advertisting1' => $advertisting1,
+               'advertisting2' => $advertisting2,
+               'video' => (($video) ? $video->url : null),
+               'announce' => (($announce) ? $announce->url : null),
+               'info' => (($info) ? $info->url : null),
+               'help' => (($help) ? $help->url : null),
+               'more' => (($more) ? $more->url : null),
+         ];
+
+         return $urls;
     }
 }

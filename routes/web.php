@@ -64,10 +64,10 @@ Route::get('/projects/{project}/homepage', [App\Http\Controllers\ProjectControll
 Route::get('/projects/{project}/startpages', [App\Http\Controllers\ProjectController::class, 'startpage'])
        ->name('projects.startpage');
 
-Route::post('/startpages/{$id}', 'App\Http\Controllers\StartpageController@newstore')
+Route::post('/startpages/{id}', 'App\Http\Controllers\StartpageController@newstore')
        ->name('startpages.newstore');
 
-//Route::resource('startpages', StartPageController::class);
+Route::resource('startpages', StartpageController::class);
 
 Route::resource('projects', ProjectController::class);
 

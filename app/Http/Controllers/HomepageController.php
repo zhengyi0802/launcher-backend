@@ -93,11 +93,4 @@ class HomepageController extends Controller
         return view('homepage.addmarquee', compact('project'))->with('popup', 'open');
     }
 
-    public function insertlogo()
-    {
-        $projects = DB::table('projects')->get();
-
-        return view('homepage.index', compact('projects'));
-    }
-
 }
