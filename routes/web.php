@@ -142,6 +142,15 @@ Route::post('/infos/{id}', 'App\Http\Controllers\InfoController@newstore')->name
 
 Route::resource('infos', InfoController::class);
 
+Route::get('/info_contents/{info}/edit2', 'App\Http\Controllers\InfoContentController@edit2')
+       ->name('info_contents.edit2');
+
+Route::get('/info_contents/{info}/show', 'App\Http\Controllers\InfoContentController@show')
+       ->name('info_contents.show');
+
+Route::post('/info_contents/{info}', 'App\Http\Controllers\InfoContentController@newstore')
+       ->name('info_contents.newstore');
+
 Route::post('/helps/{id}', 'App\Http\Controllers\HelpController@newstore')->name('helps.newstore');
 
 Route::resource('helps', HelpController::class);

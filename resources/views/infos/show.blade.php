@@ -16,7 +16,7 @@
                 <a class="btn btn-primary" href="{{ route('infos.index') }}">返回</a>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('info_contents.show') }}">快訊內容詳情</a>
+                <a class="btn btn-primary" href="{{ route('info_contents.show', $info->id) }}">快訊內容詳情</a>
             </div>
         </div>
     </div>
