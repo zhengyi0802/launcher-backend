@@ -83,10 +83,10 @@ class VideoController extends Controller
      */
     public function show(Video $video)
     {
-        $project = Project::where('id', $video->id)->first();
+        $project = Project::where('id', $video->proj_id)->first();
 
         return view('videos.show',compact('video'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**
@@ -98,10 +98,10 @@ class VideoController extends Controller
     public function edit(Video $video)
     {
         //
-        $project = Project::where('id', $video->id)->first();
+        $project = Project::where('id', $video->proj_id)->first();
 
         return view('videos.edit',compact('video'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**

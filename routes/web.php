@@ -18,6 +18,7 @@ use App\Http\Controllers\InfoController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\MoreController;
 use App\Http\Controllers\MarqueeController;
+use App\Http\Controllers\AnnounceContentController;
 use App\Http\Controllers\FileUpload;
 use Intervention\Image\Facades\Image;
 
@@ -126,6 +127,11 @@ Route::resource('videos', VideoController::class);
 Route::post('/announces/{id}', 'App\Http\Controllers\AnnounceController@newstore')->name('announces.newstore');
 
 Route::resource('announces', AnnounceController::class);
+
+Route::post('/announce_contents/{id}', 'App\Http\Controllers\AnnounceContentController@newstore')
+       ->name('announce_contents.newstore');
+
+Route::resource('announce_contents', AnnounceContentController::class);
 
 Route::post('/infos/{id}', 'App\Http\Controllers\InfoController@newstore')->name('infos.newstore');
 

@@ -92,10 +92,10 @@ class AnnounceController extends Controller
      */
     public function show(Announce $announce)
     {
-        $project = Project::where('id', $announce->id)->first();
+        $project = Project::where('id', $announce->proj_id)->first();
 
         return view('announces.show',compact('announce'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**
@@ -107,10 +107,10 @@ class AnnounceController extends Controller
     public function edit(Announce $announce)
     {
         //
-        $project = Project::where('id', $announce->id)->first();
+        $project = Project::where('id', $announce->proj_id)->first();
 
-        return view('announces.edit',compact('announce'))
-               ->with('proj_name', $project->name);
+        return view('announces.edit', compact('announce'))
+               ->with(compact('project'));
     }
 
     /**

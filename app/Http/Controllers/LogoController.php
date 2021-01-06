@@ -91,10 +91,10 @@ class LogoController extends Controller
      */
     public function show(Logo $logo)
     {
-        $project = Project::where('id', $logo->id)->first();
+        $project = Project::where('id', $logo->proj_id)->first();
 
         return view('logos.show',compact('logo'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**
@@ -106,10 +106,10 @@ class LogoController extends Controller
     public function edit(Logo $logo)
     {
         //
-        $project = Project::where('id', $logo->id)->first();
+        $project = Project::where('id', $logo->proj_id)->first();
 
         return view('logos.edit',compact('logo'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**

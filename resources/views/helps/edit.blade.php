@@ -15,6 +15,9 @@
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('helps.index') }}">返回</a>
             </div>
+            <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('help_contents.edit') }}">編輯操作教學內容</a>
+            </div>
         </div>
     </div>
 
@@ -30,7 +33,7 @@
     @endif
     <div class="row">
        <div class="col-xs-12 col-sm-12 col-md-12">
-           <strong>專案名稱 : {{ $proj_name }}</strong>
+           <strong>專案名稱 : {{ $project->name }}</strong>
        </div>
     </div>
     <form action="{{ route('helps.update',$help->id) }}" method="POST" enctype="multipart/form-data">

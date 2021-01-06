@@ -30,7 +30,7 @@
     @endif
     <div class="row">
        <div class="col-xs-12 col-sm-12 col-md-12">
-           <strong>專案名稱 : {{ $proj_name }}</strong>
+           <strong>專案名稱 : {{ $project->name }}</strong>
        </div>
     </div>
     <form action="{{ route('videos.update',$video->id) }}" method="POST" enctype="multipart/form-data">

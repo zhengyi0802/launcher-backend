@@ -90,10 +90,10 @@ class BannerController extends Controller
      */
     public function show(Banner $banner)
     {
-        $project = Project::where('id', $banner->id)->first();
+        $project = Project::where('id', $banner->proj_id)->first();
 
         return view('banners.show',compact('banner'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**
@@ -104,10 +104,10 @@ class BannerController extends Controller
      */
     public function edit(Banner $banner)
     {
-        $project = Project::where('id', $banner->id)->first();
+        $project = Project::where('id', $banner->proj_id)->first();
 
         return view('banners.edit',compact('banner'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**

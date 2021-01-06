@@ -15,6 +15,9 @@
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('infos.index') }}">返回</a>
             </div>
+            <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('info_contents.edit') }}">編輯快訊內容</a>
+            </div>
         </div>
     </div>
 

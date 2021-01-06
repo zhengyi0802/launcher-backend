@@ -15,6 +15,9 @@
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('helps.index') }}">返回</a>
             </div>
+            <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('help_contents.show') }}">操作教學內容</a>
+            </div>
         </div>
     </div>
 
@@ -22,7 +25,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>專案名稱:</strong>
-                {{ $proj_name }}
+                {{ $project->name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

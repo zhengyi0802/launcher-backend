@@ -92,10 +92,10 @@ class HelpController extends Controller
      */
     public function show(Help $help)
     {
-        $project = Project::where('id', $help->id)->first();
+        $project = Project::where('id', $help->proj_id)->first();
 
         return view('helps.show',compact('help'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**
@@ -106,10 +106,10 @@ class HelpController extends Controller
      */
     public function edit(Help $help)
     {
-        $project = Project::where('id', $help->id)->first();
+        $project = Project::where('id', $help->proj_id)->first();
 
         return view('helps.edit',compact('help'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**
