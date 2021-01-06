@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\ImageUpload;
+use App\Models\File;
 use App\Models\Project;
+use App\Models\Announce;
 use App\Models\AnnounceContent;
 use Illuminate\Http\Request;
 
@@ -45,9 +48,9 @@ class AnnounceContentController extends Controller
      * @param  \App\Models\AnnounceContent  $announceContent
      * @return \Illuminate\Http\Response
      */
-    public function show(AnnounceContent $announceContent)
+    public function show(AnnounceContent $announceContent, Announce $announce)
     {
-        $project = Project::where('id', $announceContent->proj_id)->first();
+        $project = Project::where('id', $announce->proj_id)->first();
 
         return view('announce_contents.show', compact('announceContent'))
                ->with(compact('project'));
@@ -60,11 +63,18 @@ class AnnounceContentController extends Controller
      * @param  \App\Models\AnnounceContent  $announceContent
      * @return \Illuminate\Http\Response
      */
-    public function edit(AnnounceContent $announceContent)
+    public function edit2(Announce $announce)
     {
-        $project = Project::where('id', $announceComtent->id)->first();
 
-        return view('announce_contents.edit', compact('announceContent'))
+        $project = Project::where('id', $announce->proj_id)->firstOrFail();
+        $announceContent = AnnounceContent::where('proj_id', $announce->proj_id)->first();
+
+        if ($announceContent == null) {
+            $announceContent = new AnnounceContent;
+        }
+
+        return view('announce_contents.edit2', compact('announceContent'))
+               ->with(compact('announce'))
                ->with(compact('project'));
     }
 
@@ -91,7 +101,7 @@ class AnnounceContentController extends Controller
         //
     }
 
-    public function newstore(Request $request, $id)
+    public function newstore(Request $request, Announce $announce)
     {
         $request->validate([
             'name' => 'required',
@@ -99,13 +109,13 @@ class AnnounceContentController extends Controller
         ]);
 
         $insertflag = false;
-        $announceContent = AnnounceContent::where('proj_id', '=', $id)->first();
+        $announceContent = AnnounceContent::where('proj_id', '=', $announce->proj_id)->first();
         if ($announceContent == null) {
             $announceContent = new AnnounceContent;
             $insertflag = true;
         }
 
-        $announceContent->proj_id = $id;
+        $announceContent->proj_id = $announce->proj_id;
         $announceContent->name = $request->name;
         $announceContent->mime_type = $request->mime_type;
         if ($request->url != null) $announceContent->url = $request->url;
@@ -127,7 +137,7 @@ class AnnounceContentController extends Controller
 
         $announceContent->save();
 
-        return redirect()->route('announces.edit')
+        return redirect()->route('announces.edit', $announce)
                ->with('success','Announce Content created successfully.');
 
     }

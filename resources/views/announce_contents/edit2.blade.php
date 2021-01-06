@@ -3,7 +3,7 @@
 @section('title', '朕臨首頁設計')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">公告管理系統</h1>
+    <h1 class="m-0 text-dark">公告內容管理系統</h1>
 @stop
 
 @section('content')
@@ -30,13 +30,13 @@
        </div>
     </div>
 
-    <form action="{{ route('announcecontents.newstore', $project->id) }}" method="POST" enctype="multipart/form-data" >
+    <form action="{{ route('announce_contents.newstore', $announce->id) }}" method="POST" enctype="multipart/form-data" >
          @csrf
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>名稱:</strong>
-                    <input type="text" name="name" value="{{ $announceContent->name }}" class="form-control" placeholder="名稱">
+                    <input type="text" name="name" value="{{ $announceContent->name }} " class="form-control" placeholder="名稱">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

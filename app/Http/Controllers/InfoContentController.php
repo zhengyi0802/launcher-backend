@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\InformationContent;
 use Illuminate\Http\Request;
 
-class InformationContentController extends Controller
+class InfoContentController extends Controller
 {
     /**
      * Display a listing of the resource.

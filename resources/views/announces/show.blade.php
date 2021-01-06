@@ -16,7 +16,7 @@
                 <a class="btn btn-primary" href="{{ route('announces.index') }}">返回</a>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('announce_contents.show', $announce->proj_id) }}">公告內容詳情</a>
+                <a class="btn btn-primary" href="{{ route('announce_contents.edit2', $announce->id) }}">編輯公告內容</a>
             </div>
         </div>
     </div>

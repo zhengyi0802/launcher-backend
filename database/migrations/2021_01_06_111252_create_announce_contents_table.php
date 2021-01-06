@@ -19,10 +19,10 @@ class CreateAnnounceContentsTable extends Migration
             $table->string('name');
             $table->string('mime_type');
             $table->string('url');
-            $table->text('detial');
+            $table->text('detail')->nullable();
             $table->boolean('status');
-            $table->datetime('start_datetime');
-            $table->datetime('stop_datetime');
+            $table->datetime('start_datetime')->nullable();
+            $table->datetime('stop_datetime')->nullable();
             $table->timestamps();
         });
     }
