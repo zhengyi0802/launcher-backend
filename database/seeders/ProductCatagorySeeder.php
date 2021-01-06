@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ProductCatagory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 

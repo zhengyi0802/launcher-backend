@@ -153,38 +153,37 @@ class HomepageController extends Controller
 
     private function getUrls($id)
     {
-         $logo = Logo::where('proj_id', '=', $id)->first()->toArray();
-         $banner = Banner::where('proj_id', '=', $id)->first()->toArray();
+         $logo = Logo::where('proj_id', '=', $id)->first();
+         $banner = Banner::where('proj_id', '=', $id)->first();
          $advertistings = Advertisting::where('proj_id', '=', $id);
-         $video = Video::where('proj_id', '=', $id)->first()->toArray();
-         $announce = Announce::where('proj_id', '=', $id)->first()->toArray();
-         $info = Information::where('proj_id', '=', $id)->first()->toArray();
-         $help = Help::where('proj_id', '=', $id)->first()->toArray();
-         $more = More::where('proj_id', '=', $id)->first()->toArray();
+         $video = Video::where('proj_id', '=', $id)->first();
+         $announce = Announce::where('proj_id', '=', $id)->first();
+         $info = Information::where('proj_id', '=', $id)->first();
+         $help = Help::where('proj_id', '=', $id)->first();
+         $more = More::where('proj_id', '=', $id)->first();
          $advertisting1 = null;
          $advertisting2 = null;
 
          if ($advertistings) {
              foreach($advertistings as $advertisting) {
                 if ($advertisting->position == 1) {
-                    $qdvertisting1 = $advertisting->toArray();
+                    $qdvertisting1 = $advertisting;
                 } else {
-                    $advertisting2 = $advertisting->toArray();
+                    $advertisting2 = $advertisting;
                 }
             }
          }
 
-
          $urls = [
-               'logo' => (($logo) ? $logo : null),
-               'banner' => (($banner) ? $banner : null),
-               'advertisting1' => $advertisting1,
-               'advertisting2' => $advertisting2,
-               'video' => (($video) ? $video : null),
-               'announce' => (($announce) ? $announce : null),
-               'info' => (($info) ? $info : null),
-               'help' => (($help) ? $help : null),
-               'more' => (($more) ? $more : null),
+               'logo' => (($logo) ? $logo->toArray() : null),
+               'banner' => (($banner) ? $banner->toArray() : null),
+               'advertisting1' => (($advertisting1) ? $advertisting1->toArray() : null),
+               'advertisting2' => (($advertisting2) ? $advertisting2->toArray() : null),
+               'video' => (($video) ? $video->toArray() : null),
+               'announce' => (($announce) ? $announce->toArray() : null),
+               'info' => (($info) ? $info->toArray() : null),
+               'help' => (($help) ? $help->toArray() : null),
+               'more' => (($more) ? $more->toArray() : null),
          ];
 
          return $urls;
