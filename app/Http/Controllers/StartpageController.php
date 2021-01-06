@@ -163,4 +163,23 @@ class StartpageController extends Controller
     {
         //
     }
+
+    public function query(Request $request)
+    {
+        if ($request->input('mac')) {
+            $mac = $request->input('mac');
+            $product = Product::where('mac_address', '=', $mac)->firstOrFail();
+            //var_dump($product);
+            if ($product) {
+                $proj_id = $product->proj_id;
+            }
+        } else if ($request->input('id') {
+            $proj_id = $request->input('id');
+        }
+
+        $startpage = Startpage::where('proj_id', $proj_id)->firstOrFail();
+        if ($startpage)
+            return json_encode($startpage);
+    }
+
 }
