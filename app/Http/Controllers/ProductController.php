@@ -61,6 +61,9 @@ class ProductController extends Controller
             'status_id' => 'required',
         ]);
 
+        $mac = str_replace(":", "", $request->input('mac_address'));
+        $request->merge(array('mac_address' => $mac));
+
         Product::create($request->all());
 
         return redirect()->route('products.index')
@@ -120,6 +123,9 @@ class ProductController extends Controller
             'type_id' => 'required',
             'status_id' => 'required',
         ]);
+
+        $mac = str_replace(":", "", $request->input('mac_address'));
+        $request->merge(array('mac_address' => $mac));
 
         $product->update($request->all());
 

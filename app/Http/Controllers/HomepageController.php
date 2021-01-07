@@ -138,6 +138,7 @@ class HomepageController extends Controller
         //var_dump($request);
         if ($request->input('mac')) {
             $mac = $request->input('mac');
+            $mac = str_replace(":", "", $mac);
             $product = Product::where('mac_address', '=', $mac)->firstOrFail();
             //var_dump($product);
             if ($product) {
@@ -155,24 +156,13 @@ class HomepageController extends Controller
     {
          $logo = Logo::where('proj_id', '=', $id)->first();
          $banner = Banner::where('proj_id', '=', $id)->first();
-         $advertistings = Advertisting::where('proj_id', '=', $id);
+         $advertisting1 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '1')->first();
+         $advertisting2 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '2')->first();
          $video = Video::where('proj_id', '=', $id)->first();
          $announce = Announce::where('proj_id', '=', $id)->first();
          $info = Information::where('proj_id', '=', $id)->first();
          $help = Help::where('proj_id', '=', $id)->first();
          $more = More::where('proj_id', '=', $id)->first();
-         $advertisting1 = null;
-         $advertisting2 = null;
-
-         if ($advertistings) {
-             foreach($advertistings as $advertisting) {
-                if ($advertisting->position == 1) {
-                    $qdvertisting1 = $advertisting;
-                } else {
-                    $advertisting2 = $advertisting;
-                }
-            }
-         }
 
          $urls = [
                'logo' => (($logo) ? $logo->toArray() : null),
@@ -190,3 +180,4 @@ class HomepageController extends Controller
     }
 
 }
+

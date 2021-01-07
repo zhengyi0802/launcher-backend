@@ -143,25 +143,15 @@ class ProjectController extends Controller
     {
          $logo = Logo::where('proj_id', '=', $id)->first();
          $banner = Banner::where('proj_id', '=', $id)->first();
-         $advertistings = Advertisting::where('proj_id', '=', $id);
+         $advertisting1 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '1')->first();
+         $advertisting2 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '2')->first();
          $video = Video::where('proj_id', '=', $id)->first();
          $announce = Announce::where('proj_id', '=', $id)->first();
          $info = Information::where('proj_id', '=', $id)->first();
          $help = Help::where('proj_id', '=', $id)->first();
          $more = More::where('proj_id', '=', $id)->first();
-         $advertisting1 = null;
-         $advertisting2 = null;
-
-         if ($advertistings) {
-             foreach($advertistings as $advertisting) {
-                if ($advertisting->position == 1) {
-                    $qdvertisting1 = $advertisting;
-                } else {
-                    $advertisting2 = $advertisting;
-                }
-            }
-         }
-
+         //$advertisting1 = null;
+         //$advertisting2 = null;
 
          $urls = [
                'logo' => (($logo) ? $logo->toArray() : null),

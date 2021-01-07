@@ -91,10 +91,10 @@ class AdvertistingController extends Controller
      */
     public function show(Advertisting $advertisting)
     {
-        $project = Project::where('id', $advertisting->id)->first();
+        $project = Project::where('id', $advertisting->proj_id)->first();
 
         return view('advertistings.show',compact('advertisting'))
-               ->with('proj_name', $project->name);
+               ->with(compact('project'));
     }
 
     /**
@@ -105,7 +105,7 @@ class AdvertistingController extends Controller
      */
     public function edit(Advertisting $advertisting)
     {
-        $project = Project::where('id', $advertisting->id)->first();
+        $project = Project::where('id', $advertisting->proj_id)->first();
 
         return view('advertistings.edit',compact('advertisting'))
                ->with('proj_name', $project->name);
