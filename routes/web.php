@@ -61,7 +61,7 @@ Route::get('/projects/{project}/startpages', [App\Http\Controllers\ProjectContro
 Route::post('/startpages/{id}', 'App\Http\Controllers\StartpageController@newstore')
        ->name('startpages.newstore');
 
-Route::get('/startpages/query', [App\Http\Controllers\HomepageController::class, 'query'])
+Route::get('/startpages/query', [App\Http\Controllers\StartpageController::class, 'query'])
        ->name('startpages.query');
 
 Route::resource('startpages', StartpageController::class);
