@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\ImageUpload;
+use App\Models\Product;
 use App\Models\File;
 use App\Models\Startpage;
 use Illuminate\Support\Facades\DB;
@@ -167,7 +168,7 @@ class StartpageController extends Controller
     public function query(Request $request)
     {
         if ($request->input('mac')) {
-            $mac = $request->input('mac');
+            $mac = str_replace(':', '', $request->input('mac'));
             $product = Product::where('mac_address', '=', $mac)->firstOrFail();
             //var_dump($product);
             if ($product) {
@@ -177,7 +178,7 @@ class StartpageController extends Controller
             $proj_id = $request->input('id');
         }
 
-        $startpage = Startpage::where('proj_id', $proj_id)->firstOrFail();
+        $startpage = Startpage::where('proj_id', $proj_id)->latest()->get()->first();
         if ($startpage)
             return json_encode($startpage);
     }

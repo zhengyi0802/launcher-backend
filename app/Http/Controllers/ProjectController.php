@@ -141,17 +141,15 @@ class ProjectController extends Controller
 
     private function getUrls($id)
     {
-         $logo = Logo::where('proj_id', '=', $id)->first();
-         $banner = Banner::where('proj_id', '=', $id)->first();
-         $advertisting1 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '1')->first();
-         $advertisting2 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '2')->first();
-         $video = Video::where('proj_id', '=', $id)->first();
-         $announce = Announce::where('proj_id', '=', $id)->first();
-         $info = Information::where('proj_id', '=', $id)->first();
-         $help = Help::where('proj_id', '=', $id)->first();
-         $more = More::where('proj_id', '=', $id)->first();
-         //$advertisting1 = null;
-         //$advertisting2 = null;
+         $logo = Logo::where('proj_id', '=', $id)->latest()->get()->first();
+         $banner = Banner::where('proj_id', '=', $id)->latest()->get()->first();
+         $advertisting1 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '1')->latest()->get()->first();
+         $advertisting2 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '2')->latest()->get()->first();
+         $video = Video::where('proj_id', '=', $id)->latest()->get()->first();
+         $announce = Announce::where('proj_id', '=', $id)->latest()->get()->first();
+         $info = Information::where('proj_id', '=', $id)->latest()->get()->first();
+         $help = Help::where('proj_id', '=', $id)->latest()->get()->first();
+         $more = More::where('proj_id', '=', $id)->latest()->get()->first();
 
          $urls = [
                'logo' => (($logo) ? $logo->toArray() : null),

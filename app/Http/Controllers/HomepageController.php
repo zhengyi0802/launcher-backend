@@ -55,7 +55,7 @@ class HomepageController extends Controller
 
     public function addlogo(Project $project)
     {
-        $logo = Logo::where('proj_id', '=', $project->id)->first();
+        $logo = Logo::where('proj_id', '=', $project->id)->latest()->get()->first();
 
         return view('homepage.addlogo', compact('project'))
                ->with(compact('logo'))
@@ -64,7 +64,7 @@ class HomepageController extends Controller
 
     public function addbanner(Project $project)
     {
-        $banner = Banner::where('proj_id', '=', $project->id)->first();
+        $banner = Banner::where('proj_id', '=', $project->id)->latest()->get()->first();
 
         return view('homepage.addbanner', compact('project'))
                ->with(compact('banner'))
@@ -73,7 +73,7 @@ class HomepageController extends Controller
 
     public function addvideo(Project $project)
     {
-        $video = Video::where('proj_id', '=', $project->id)->first();
+        $video = Video::where('proj_id', '=', $project->id)->latest()->get()->first();
 
         return view('homepage.addvideo', compact('project'))
                ->with(compact('video'))
@@ -82,7 +82,7 @@ class HomepageController extends Controller
 
     public function addannounce(Project $project)
     {
-        $announce = Announce::where('proj_id', '=', $project->id)->first();
+        $announce = Announce::where('proj_id', '=', $project->id)->latest()->get()->first();
 
         return view('homepage.addannounce', compact('project'))
                ->with(compact('announce'))
@@ -91,7 +91,7 @@ class HomepageController extends Controller
 
     public function addadvertisting($id, $position)
     {
-        $project = DB::table('projects')->where('id', $id)->first();
+        $project = DB::table('projects')->where('id', $id)->latest()->get()->first();
         $advertisting1 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '1')->first();
         $advertisting2 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '2')->first();
         return view('homepage.addadvertisting',
@@ -103,7 +103,7 @@ class HomepageController extends Controller
 
     public function addinformations(Project $project)
     {
-        $info = Information::where('proj_id', '=', $project->id)->first();
+        $info = Information::where('proj_id', '=', $project->id)->latest()->get()->first();
 
         return view('homepage.addinformations', compact('project'))
                ->with(compact('info'))
@@ -112,7 +112,7 @@ class HomepageController extends Controller
 
     public function addhelp(Project $project)
     {
-        $help = Help::where('proj_id', '=', $project->id)->first();
+        $help = Help::where('proj_id', '=', $project->id)->latest()->get()->first();
 
         return view('homepage.addhelp', compact('project'))
                ->with(compact('help'))
@@ -121,7 +121,7 @@ class HomepageController extends Controller
 
     public function addmore(Project $project)
     {
-        $more = More::where('proj_id', '=', $project->id)->first();
+        $more = More::where('proj_id', '=', $project->id)->latest()->get()->first();
 
         return view('homepage.addmore', compact('project'))
                ->with(compact('more'))
@@ -154,15 +154,15 @@ class HomepageController extends Controller
 
     private function getUrls($id)
     {
-         $logo = Logo::where('proj_id', '=', $id)->first();
-         $banner = Banner::where('proj_id', '=', $id)->first();
-         $advertisting1 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '1')->first();
-         $advertisting2 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '2')->first();
-         $video = Video::where('proj_id', '=', $id)->first();
-         $announce = Announce::where('proj_id', '=', $id)->first();
-         $info = Information::where('proj_id', '=', $id)->first();
-         $help = Help::where('proj_id', '=', $id)->first();
-         $more = More::where('proj_id', '=', $id)->first();
+         $logo = Logo::where('proj_id', '=', $id)->latest()->get()->first();
+         $banner = Banner::where('proj_id', '=', $id)->latest()->get()->first();
+         $advertisting1 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '1')->latest()->get()->first();
+         $advertisting2 = Advertisting::where('proj_id', '=', $id)->where('position', '=', '2')->latest()->get()->first();
+         $video = Video::where('proj_id', '=', $id)->latest()->get()->first();
+         $announce = Announce::where('proj_id', '=', $id)->latest()->get()->first();
+         $info = Information::where('proj_id', '=', $id)->latest()->get()->first();
+         $help = Help::where('proj_id', '=', $id)->latest()->get()->first();
+         $more = More::where('proj_id', '=', $id)->latest()->get()->first();
 
          $urls = [
                'logo' => (($logo) ? $logo->toArray() : null),
