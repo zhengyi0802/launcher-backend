@@ -19,4 +19,11 @@ class Product extends Model
        'status_id',
     ];
 
+    public function macformat($mac_address)
+    {
+        $mac_array = str_split($ac_address, 2);
+        $macaddress = implode(':', $mac_array);
+        return $macaddress;
+    }
+
 }

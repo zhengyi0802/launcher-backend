@@ -25,7 +25,13 @@ class ProductController extends Controller
                         ->select('products.*', 'product_types.name as type_name',
                           'projects.name as project_name',
                           'product_statuses.name as status_name')->paginate(5);
-
+        if ($products) {
+            foreach($products as $product) {
+                $mac_array = str_split($product->mac_address, 2);
+                $macaddress = implode(':', $mac_array);
+                $product->mac_address = $macaddress;
+            }
+        }
         return view('products.index',compact('products'))
               ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -62,6 +68,7 @@ class ProductController extends Controller
         ]);
 
         $mac = str_replace(":", "", $request->input('mac_address'));
+        $mac = strtoupper($mac);
         $request->merge(array('mac_address' => $mac));
 
         Product::create($request->all());
@@ -82,6 +89,9 @@ class ProductController extends Controller
         $productStatus = ProductStatus::where('id', $product->status_id)->first();
         $project = Project::where('id', $product->proj_id)->first();
         $proj_name = ($project != null) ? $project->name : '--------';
+        $mac_array = str_split($product->mac_address, 2);
+        $mac_address = implode(':', $mac_array);
+        $product->mac_address = $mac_address;
 
         return view('products.show',compact('product'))
                ->with('proj_name', $proj_name)
@@ -101,6 +111,9 @@ class ProductController extends Controller
         $productTypes = DB::table('product_types')->get();
         $productStatuses = DB::table('product_statuses')->get();
         $projects = DB:: table('projects')->get();
+        $mac_array = str_split($product->mac_address, 2);
+        $mac_address = implode(':', $mac_array);
+        $product->mac_address = $mac_address;
 
         return view('products.edit', compact('product'))
                ->with(compact('productTypes'))
@@ -125,6 +138,7 @@ class ProductController extends Controller
         ]);
 
         $mac = str_replace(":", "", $request->input('mac_address'));
+        $mac = strtoupper($mac);
         $request->merge(array('mac_address' => $mac));
 
         $product->update($request->all());

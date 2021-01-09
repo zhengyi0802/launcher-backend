@@ -139,6 +139,7 @@ class HomepageController extends Controller
         if ($request->input('mac')) {
             $mac = $request->input('mac');
             $mac = str_replace(":", "", $mac);
+            $mac = strtoupper($mac);
             $product = Product::where('mac_address', '=', $mac)->firstOrFail();
             //var_dump($product);
             if ($product) {

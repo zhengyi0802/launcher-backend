@@ -169,6 +169,7 @@ class StartpageController extends Controller
     {
         if ($request->input('mac')) {
             $mac = str_replace(':', '', $request->input('mac'));
+            $mac = strtoupper($mac);
             $product = Product::where('mac_address', '=', $mac)->firstOrFail();
             //var_dump($product);
             if ($product) {
